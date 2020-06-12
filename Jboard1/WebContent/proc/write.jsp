@@ -1,5 +1,5 @@
-<%@page import="kr.co.jboard1.bean.MemberBean"%>
 <%@page import="kr.co.jboard1.config.SQL"%>
+<%@page import="kr.co.jboard1.bean.MemberBean"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="kr.co.jboard1.config.DBConfig"%>
@@ -7,7 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	//파라미터 수신
-	request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("utf-8");
 	
 	String uid = request.getParameter("uid");
 	String title = request.getParameter("title");
@@ -17,7 +17,7 @@
 	//DB정보
 	
 	//세션에서 사용자 아이디 구하기 
-	MemberBean mb = (MemberBean) session.getAttribute("member");
+	//MemberBean mb = (MemberBean) session.getAttribute("member");
 	
 	//1 ,2단계
 	Connection conn  = DBConfig.getConnection();

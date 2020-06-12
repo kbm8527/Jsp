@@ -6,7 +6,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("utf-8");
 	String uid = request.getParameter("uid");
 	String pass = request.getParameter("pass");
 
@@ -57,6 +57,5 @@
 	stmt.close();
 	conn.close();
 	
-	//리다이렉트
 
 %>

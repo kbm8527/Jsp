@@ -44,8 +44,7 @@
 <body>
     <div id="wrapper">
         <section id="user" class="terms">
-            <table>
-                <caption>사이트 이용약관</caption>
+            <table>                <caption>사이트 이용약관</caption>
                 <tr>
                     <td>
                         <textarea readonly><%= tb.getTerms() %></textarea>

@@ -24,8 +24,10 @@ public class DBConfig {
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		//2´Ü°è
-	  Connection conn =  DriverManager.getConnection(HOST,USER,PASS);
-	  return conn;
+	
+		Connection conn =  DriverManager.getConnection(HOST,USER,PASS);
+		
+		return conn;
 	  
 	}
 	
