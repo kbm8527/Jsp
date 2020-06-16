@@ -18,8 +18,16 @@ public class SQL {
 	
 		public final static String UPDATE_HIT= "UPDATE `JBOARD_ARTICLE` SET `hit`=`hit` + 1 WHERE `seq`=?"; 
 	
-		public final static String SELECT_ARTICLE = "SELECT * FROM `JBOARD_ARTICLE` "
-													+ "WHERE `seq`=?";
+		//public final static String SELECT_ARTICLE = "SELECT * FROM `JBOARD_ARTICLE` "
+													//+ "WHERE `seq`=?";
+		
+		public final static	String SELECT_ARTICLE_MAX_SEQ = "SELECT MAX(`seq`) FROM `JBOARD_ARTICLE`";
+		
+		public final static String SELECT_ARTICLE ="SELECT * FROM `JBOARD_ARTICLE` AS a " 
+													+ "LEFT JOIN `JBOARD_FILE` AS b "
+													+ "ON a.seq = b.parent "
+													+ "WHERE a.`seq`=?";
+		
 		
 		
 		public final static String SELECT_ARTICLES = "SELECT a.*, b.nick FROM `JBOARD_ARTICLE` AS a "  
@@ -33,8 +41,15 @@ public class SQL {
 		public final static String INSERT_ARTICLE = "INSERT INTO `JBOARD_ARTICLE` SET "
 													+ "`title`=?, "
 													+ "`content`=?, "
+													+ "`file`=?, "
 													+ "`uid`=?, "
 													+ "`regip`=?, "
+													+ "`rdate`=NOW()";
+		
+		public final static String INSERT_FILE = "INSERT INTO `JBOARD_FILE` SET "
+													+ "`parent`=?, "
+													+ "`oldName`=?, "
+													+ "`newName`=?, "
 													+ "`rdate`=NOW()";
 		
 		
@@ -54,6 +69,9 @@ public class SQL {
 				+ "`uid`=?, "
 				+ "`regip`=?, "
 				+ "`rdate`=NOW()";
+		
+		public final static String UPDATE_FILE_DOWN_COUNT = "UPDATE `JBOARD_FILE` SET `download`=`download` + 1 WHERE `seq`=?";
+		
 	
 		public final static String UPDATE_COMMENT_COUNT ="UPDATE `JBOARD_ARTICLE` SET `comment`=`comment` + 1 "
 				+ "WHERE `seq`=?";

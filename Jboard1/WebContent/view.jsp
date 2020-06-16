@@ -1,5 +1,6 @@
 
 
+<%@page import="kr.co.jboard1.bean.FileBean"%>
 <%@page import="kr.co.jboard1.config.SQL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -22,6 +23,7 @@
 	
 	request.setCharacterEncoding("UTF-8");
 	String seq = request.getParameter("seq");
+	String download = request.getParameter("download");
 	
 
 	
@@ -30,6 +32,7 @@
 	
 	//1,2단계
 	Connection conn = DBConfig.getConnection();
+	conn.setAutoCommit(false);
 	
 	//3단계
 	PreparedStatement psmtHit = conn.prepareStatement(SQL.UPDATE_HIT);
@@ -48,6 +51,9 @@
 	
 	//5단계
 	ArticleBean article = new ArticleBean();
+	FileBean fileBean = new FileBean();
+	
+	
 	
 	if(rs.next()){
 		article.setSeq(rs.getInt(1));
@@ -62,6 +68,13 @@
 		article.setRegip(rs.getString(10));
 		article.setRdate(rs.getString(11));
 		
+		fileBean.setSeq(rs.getInt(12));
+		fileBean.setParent(rs.getInt(13));
+		fileBean.setOldName(rs.getString(14));
+		fileBean.setNewName(rs.getString(15));
+		fileBean.setDownload(rs.getInt(16));
+		fileBean.setRdate(rs.getString(17));
+		article.setFileBean(fileBean);
 		
 	}
 	
@@ -81,7 +94,7 @@
 		comments.add(comment);		
 	}
 	
-	
+	conn.commit();
 	
 	//6단계
 	rsComment.close();
@@ -102,6 +115,16 @@
     <meta charset="UTF-8">
     <title>글보기</title>
     <link rel="stylesheet" href="./css/style.css"/>
+    <script>
+    
+    	var download = "<%= download %>";
+    	
+    	if(download == 'fail'){
+    		alert('해당하는 파일이 없습니다. \n관리자에게 문의하시기 바랍니다.');
+    	}
+    	
+    	
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -113,13 +136,19 @@
                     <td>제목</td>
                     <td><input type="text" name="title" value="<%= article.getTitle() %>" readonly/></td>
                 </tr>
-                <% if(article.getFile() == 1){ %>
+                <% 
+                	if(article.getFile() == 1){ 
+                	
+                		FileBean fBean = article.getFileBean();
+                		session.setAttribute("fBean",fBean);
+                		
+                %>
                 
                 <tr>
                     <td>첨부파일</td>
                     <td>
-                        <a href="#">2020년 상반기 매출자료.xls</a>
-                        <span>7회 다운로드</span>
+                        <a href="/Jboard1/proc/download.jsp?seq=<%= fBean.getSeq() %>"><%= fBean.getOldName() %></a>
+                        <span><%= fBean.getDownload() %>회 다운로드</span>
                     </td>
                 </tr>
                 <% } %>
