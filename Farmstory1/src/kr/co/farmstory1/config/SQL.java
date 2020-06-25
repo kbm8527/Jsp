@@ -22,13 +22,20 @@ public class SQL {
 	
 	
 	// 게시물 관련
+	public final static String SELECT_LATEST_ARTICLE = "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='grow' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5)"
+														+ "UNION "
+														+ "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='school' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5) "
+														+ "UNION "
+														+ "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='croptalk' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5)" ; 
+														
+	
 	public final static String SELECT_TOTAL_COUNT = "SELECT COUNT(`seq`) FROM `JBOARD_ARTICLE` WHERE `parent`=0 AND `cate`=?";
 	
 	public final static String UPDATE_ARTICLE = "UPDATE `JBOARD_ARTICLE` SET `title`=?, `content`=? "
-												+ "WHERE `seq`=? ";
+												+ "WHERE `seq`=? AND `cate`=?";
 	
-	public final static String DELETE_ARTICLE = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=? OR `parent`=?";
-	public final static String DELETE_COMMENT = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=?";
+	public final static String DELETE_ARTICLE = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=? OR `parent`=? AND `cate`=? ";
+	
 	public final static String UPDATE_HIT     = "UPDATE `JBOARD_ARTICLE` SET `hit`=`hit`+1 WHERE `seq`=?";
 	
 	public final static String SELECT_ARTICLE = "SELECT * FROM `JBOARD_ARTICLE` AS a "

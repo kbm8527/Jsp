@@ -16,7 +16,7 @@
         <section id="board" class="modify">
             <h3>글수정</h3>
             <article>
-                <form action="/Farmstory1/board/proc/modify.jsp">
+                <form action="/Farmstory1/board/proc/modify.jsp?group=<%= group %>&cate=<%= cate %>">
                 	<input type="hidden" name="seq" value=<%= article.getSeq() %> />
                     <table>
                         <tr>

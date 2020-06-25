@@ -97,6 +97,20 @@
 	session.setAttribute("article", article);
 %>
 
+
+<script>
+ 		$(document).ready(function() {
+ 		  $('#summernote').summernote({
+ 			  airMode: true;
+ 		  	  focus:false;
+ 			  
+ 			  
+ 		  });
+ 		});
+ 	</script>
+    
+
+
 <jsp:include page="<%= asideFile %>">
 	<jsp:param value="<%= cate %>" name="cate"/>
 </jsp:include>
@@ -127,7 +141,7 @@
         <tr>
             <td>내용</td>
             <td>
-                <textarea name="content" readonly><%= article.getContent() %></textarea>
+                <textarea id="summernote" name="content" readonly><%= article.getContent() %></textarea>
             </td>
         </tr>
     </table>
@@ -148,7 +162,7 @@
     %>
     
     
-        <a href="/Farmstory1/board/proc/delete.jsp?seq=<%= article.getSeq() %>" onclick="return onDelete()" class="btnDelete">삭제</a>
+        <a href="/Farmstory1/board/proc/delete.jsp?seq=<%= article.getSeq() %> &group=<%= group %>&cate=<%= cate %>" onclick="return onDelete()" class="btnDelete">삭제</a>
         <a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>" class="btnModify">수정</a>
         
        <% } %>
@@ -170,7 +184,7 @@
             	if(mb.getUid().equals(comment.getUid())){
             %>
             
-                <a href="/Farmstory1/board/proc/deleteComment.jsp?seq=<%= comment.getSeq()%>&parent=<%= comment.getParent() %>">삭제</a>
+                <a href="/Farmstory1/board/proc/deleteComment.jsp?seq=<%= comment.getSeq()%>&parent=<%= comment.getParent() %>" >삭제</a>
                 <a href="#">수정</a>
                 <% } %>
             </div>

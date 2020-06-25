@@ -7,6 +7,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String seq = request.getParameter("seq");
+	String group = request.getParameter("group");
+	String cate = request.getParameter("cate");
 	
 	//1,2단계
 	Connection conn = DBConfig.getConnection();
@@ -15,6 +17,7 @@
 	PreparedStatement psmt = conn.prepareStatement(SQL.DELETE_ARTICLE);
 	psmt.setString(1, seq);
 	psmt.setString(2, seq);
+	psmt.setString(3, cate);
 	
 	//4단계
 	psmt.executeUpdate();
@@ -27,5 +30,5 @@
 	
 	//리다이렉트
 
-	response.sendRedirect("/Farmstory1/board/list.jsp");
+	response.sendRedirect("/Farmstory1/board/list.jsp?group="+group+"&cate="+cate);
 %>
