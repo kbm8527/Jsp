@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloService implements CommonService {
 
 	@Override
-	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+		
 		return "/hello.jsp";
 	}
 
