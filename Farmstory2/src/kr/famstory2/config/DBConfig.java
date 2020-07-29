@@ -6,10 +6,6 @@ import java.sql.SQLException;
 
 public class DBConfig {
 
-	// DB���� - ������
-	//public static final String HOST = "jdbc:mysql://chhak.kr:3306/kbm";
-	//public static final String USER = "kbm";
-	//public static final String PASS = "qlfanfkela10121";
 	
 	// DB���� - ���߿�
 	public static final String HOST = "jdbc:mysql://192.168.50.82:3306/kbm";
