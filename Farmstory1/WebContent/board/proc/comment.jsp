@@ -6,6 +6,7 @@
 <%
 	// 파라미터 수신
 	request.setCharacterEncoding("utf-8");
+
 	String parent  = request.getParameter("parent");
 	String group   = request.getParameter("group");
 	String cate    = request.getParameter("cate");
@@ -27,6 +28,7 @@
 	psmt.setString(3, comment);
 	psmt.setString(4, uid);
 	psmt.setString(5, regip);
+
 	// 4단계
 	psmtUpdate.executeUpdate();
 	psmt.executeUpdate();
@@ -41,6 +43,7 @@
 	response.sendRedirect("/Farmstory1/board/view.jsp?seq="+parent+"&group="+group+"&cate="+cate);
 	
 %>
+
 
 
 

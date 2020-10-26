@@ -20,7 +20,6 @@
         </aside>
         <article>
             <nav>
-               
                 <img src="../img/sub_nav_tit_cate5_tit_<%= cate %>.png" alt="이벤트"/>
                 <p>
                     HOME > 커뮤니티 > 
@@ -37,9 +36,9 @@
                     <% } %>
                 </p>
             </nav>
-            
             <div class="content">
-
-
-
-
+            	<!-- 컨텐츠 내용 시작 -->
+            
+            
+            
+            

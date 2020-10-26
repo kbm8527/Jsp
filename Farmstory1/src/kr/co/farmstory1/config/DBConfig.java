@@ -4,13 +4,13 @@ import java.sql.DriverManager;
 public class DBConfig {
 	
 	// 배포용
-	//private static final String HOST = "jdbc:mysql://54.123.221.12:3306/kbm?~~~~";
-	//private static final String USER = "kbm";
+	//private static final String HOST = "jdbc:mysql://54.123.221.12:3306/chhak?~~~~";
+	//private static final String USER = "chhak";
 	//private static final String PASS = "1234";
 	
 	// 개발용
-	private static final String HOST = "jdbc:mysql://192.168.44.46:3306/kbm";
-	private static final String USER = "kbm";
+	private static final String HOST = "jdbc:mysql://192.168.44.46:3306/chhak";
+	private static final String USER = "chhak";
 	private static final String PASS = "1234";
 	
 	public static Connection getConnection() throws Exception {

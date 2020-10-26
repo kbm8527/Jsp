@@ -9,7 +9,6 @@
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
-
 <%
 	request.setCharacterEncoding("utf-8");
 	String group    = request.getParameter("group");
@@ -19,9 +18,10 @@
 	String asideFile  = "./_aside_"+group+".jsp";
 	
 	if(mb == null){		
-		response.sendRedirect("./list.jsp?group="+group+"&cate="+cate);
+		response.sendRedirect("./list.jsp?code=101&group="+group+"&cate="+cate);
 		return;
 	}
+
 	// 1, 2단계
 	Connection conn = DBConfig.getConnection();
 	// 트랜젝션 시작
@@ -96,32 +96,24 @@
 	// 수정을 대비하기 위한 article객체 세션에 저장
 	session.setAttribute("article", article);
 %>
-
-
-<script>
- 		$(document).ready(function() {
- 		  $('#summernote').summernote({
- 			  airMode: true;
- 		  	  focus:false;
- 			  
- 			  
- 		  });
- 		});
- 	</script>
-    
-
-
 <jsp:include page="<%= asideFile %>">
 	<jsp:param value="<%= cate %>" name="cate"/>
 </jsp:include>
-
-
 <script>
 	var download = "";
+
 	if(download == 'fail'){
 		alert('해당하는 파일이 없습니다.\n관리자에게 문의하시기 바랍니다.');
 	}
+	
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			airMode: true,
+			focus: false
+		});
+	});
 </script>
+
 <section id="board" class="view">
     <h3>글보기</h3>
     <table>
@@ -157,15 +149,8 @@
     	}
     </script>
     <div>
-    <%
-    	if(mb.getUid().equals(article.getUid())){
-    %>
-    
-    
-        <a href="/Farmstory1/board/proc/delete.jsp?seq=<%= article.getSeq() %> &group=<%= group %>&cate=<%= cate %>" onclick="return onDelete()" class="btnDelete">삭제</a>
+        <a href="#" onclick="return onDelete()" class="btnDelete">삭제</a>
         <a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>" class="btnModify">수정</a>
-        
-       <% } %>
         <a href="./list.jsp?group=<%= group %>&cate=<%= cate %>" class="btnList">목록</a>
     </div>
     
@@ -180,13 +165,8 @@
             </span>
             <textarea name="comment" readonly><%= comment.getContent() %></textarea>
             <div>
-            <%
-            	if(mb.getUid().equals(comment.getUid())){
-            %>
-            
-                <a href="/Farmstory1/board/proc/deleteComment.jsp?seq=<%= comment.getSeq()%>&parent=<%= comment.getParent() %>" >삭제</a>
+                <a href="#">삭제</a>
                 <a href="#">수정</a>
-                <% } %>
             </div>
         </article>
         <% } %>

@@ -2,10 +2,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String cate  = request.getParameter("cate");
-
 %>
-
-
 <div id="sub" class="croptalk">
     <div>
         <img src="../img/sub_top_tit3.png" alt="CROP TALK"/>
@@ -25,13 +22,19 @@
                 <p>
                     HOME > 농작물이야기 > 
                     <% if(cate.equals("croptalk")){ %>
-                    <span>농작물이야기</span>
-                     <% }else if(cate.equals("grow")){ %>
-                      <span>텃밭가꾸기</span>
-                      <% }else if(cate.equals("school")){ %>
-                       <span>귀농학교</span>
-                       <% } %>
+                    	<span>농작물이야기</span>
+                    <% }else if(cate.equals("grow")){ %>
+                    	<span>텃밭가꾸기</span>
+                    <% }else if(cate.equals("school")){ %>
+                    	<span>귀농학교</span>
+                    <% } %>
                 </p>
             </nav>
             <div class="content">
                 <!-- 컨텐츠 내용 시작 -->
+                
+                
+                
+                
+                
+                

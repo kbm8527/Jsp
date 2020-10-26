@@ -1,5 +1,7 @@
 package kr.co.farmstory1.config;
+
 public class SQL {
+
 	// 회원 관련
 	public final static String SELECT_TERMS = "SELECT * FROM `JBOARD_TERMS`";
 	public final static String SELECT_CHECK_UID  = "SELECT COUNT(`uid`) FROM `JBOARD_MEMBER` WHERE `uid`=?";
@@ -20,22 +22,20 @@ public class SQL {
 	public final static String SELECT_MEMBER  = "SELECT * FROM `JBOARD_MEMBER` "
 												+ "WHERE `uid`=? AND `pass`=PASSWORD(?)";
 	
-	
 	// 게시물 관련
-	public final static String SELECT_LATEST_ARTICLE = "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='grow' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5)"
-														+ "UNION "
-														+ "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='school' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5) "
-														+ "UNION "
-														+ "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='croptalk' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5)" ; 
-														
+	public final static String SELECT_LATEST_ARTICLE = "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='grow' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5) "
+													 + "UNION "
+													 + "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='school' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5) "
+													 + "UNION "
+													 + "(SELECT `seq`, `title`, `rdate` FROM `JBOARD_ARTICLE` WHERE `cate`='croptalk' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5)";
 	
 	public final static String SELECT_TOTAL_COUNT = "SELECT COUNT(`seq`) FROM `JBOARD_ARTICLE` WHERE `parent`=0 AND `cate`=?";
 	
 	public final static String UPDATE_ARTICLE = "UPDATE `JBOARD_ARTICLE` SET `title`=?, `content`=? "
-												+ "WHERE `seq`=? AND `cate`=?";
+												+ "WHERE `seq`=?";
 	
-	public final static String DELETE_ARTICLE = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=? OR `parent`=? AND `cate`=? ";
-	
+	public final static String DELETE_ARTICLE = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=? OR `parent`=?";
+	public final static String DELETE_COMMENT = "DELETE FROM `JBOARD_ARTICLE` WHERE `seq`=?";
 	public final static String UPDATE_HIT     = "UPDATE `JBOARD_ARTICLE` SET `hit`=`hit`+1 WHERE `seq`=?";
 	
 	public final static String SELECT_ARTICLE = "SELECT * FROM `JBOARD_ARTICLE` AS a "
@@ -75,7 +75,7 @@ public class SQL {
 												+ "ON a.uid = b.uid "
 												+ "WHERE `parent`=? "
 												+ "ORDER BY `seq` ASC";
-
+	
 	public final static String INSERT_COMMENT = "INSERT INTO `JBOARD_ARTICLE` SET "
 												+ "`parent`=?, "
 												+ "`cate`=?, "
@@ -88,3 +88,14 @@ public class SQL {
 													+ "WHERE `seq`=?";
 	
 }
+
+
+
+
+
+
+
+
+
+
+
